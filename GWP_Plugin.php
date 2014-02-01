@@ -7,7 +7,7 @@ require_once(dirname(__FILE__) . "/lib/mobile-detect/Mobile_Detect.php");
 *
 * @version 0.1
 * @package GWP_Plugin
-* @link      http://georgeholmesii.com
+* @link      http://gholme4.github.io/GWP_Plugin/classes/GWP_Plugin.html
 * @copyright Copyright (c) 2014 George Holmes II
 * @license   GPLv2 or later
 */
