@@ -127,6 +127,6 @@ Usage
     
     /* Initialize plugin */
     $my_plugin->init(function () {
-    	error_log("My Plugin initialized", 0);	
+    	error_log("My Plugin initialized.", 0);	
     });
 ```
