@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <script
+            type="text/javascript"
+            src="../js/jquery-1.4.2.min.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shCore.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushJScript.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushPhp.js">
+        </script>
+        <script
+            type="text/javascript"
+            src="../syntax_highlighter/scripts/shBrushXml.js">
+        </script>
+        <link
+            href="../syntax_highlighter/styles/shCore.css" rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shCoreEclipse.css"
+            rel="stylesheet" type="text/css"
+        />
+        <link
+            href="../syntax_highlighter/styles/shThemeWordpress.css"
+            rel="stylesheet" type="text/css"
+        />
+    </head>
+    <body>
+        <pre class="brush: php">&lt;?php
+require_once(dirname(__FILE__) . &quot;/lib/mobile-detect/Mobile_Detect.php&quot;);
+/**
+* GWP_Plugin
+* Class that abstracts common tasks of a WordPress plugin
+*
+* @version 0.1
+* @package GWP_Plugin
+* @link      http://georgeholmesii.com
+* @copyright Copyright (c) 2014 George Holmes II
+* @license   GPLv2 or later
+*/
+
+class GWP_Plugin {
+	
+	/**
+	* Constructor
+	*
+	* @since GWP_Plugin (0.1)
+	*/
+	public function __construct () {
+		
+	}
+	
+	/**
+	* Determines if user's device is handheld or desktop.
+	* Returns true if user is on a mobile device and false if user is on a desktop device.
+	*
+	* @since GWP_Plugin (0.1)
+	* @return boolean 
+	* @example &quot;My Own Example.php&quot; My counting.
+	*/
+	public static function is_mobile () {
+		/* Tell plugin if user is on a mobile device */
+		$detect = new Mobile_Detect();
+		return $detect-&gt;isMobile();
+		
+	}
+	
+	
+	
+}
+?&gt;</pre>
+        <script type="text/javascript">
+             SyntaxHighlighter.all();
+             jQuery('.gutter div').each(function(key, data){
+                jQuery(data).prepend('<a name="L'+jQuery(data).text()+'"/>');
+             });
+        </script>
+    </body>
+</html>
