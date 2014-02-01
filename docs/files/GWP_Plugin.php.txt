@@ -1,0 +1,53 @@
+<?php
+require_once(dirname(__FILE__) . "/lib/mobile-detect/Mobile_Detect.php");
+/**
+* GWP_Plugin
+* Class that abstracts common tasks of a WordPress plugin
+*
+* @version 0.1
+* @package GWP_Plugin
+* @link      http://georgeholmesii.com
+* @copyright Copyright (c) 2014 George Holmes II
+* @license   GPLv2 or later
+*/
+
+class GWP_Plugin {
+	
+	/**
+	* Constructor
+	*
+	* @since GWP_Plugin (0.1)
+	*/
+	public function __construct () {
+		
+	}
+	
+	/**
+	* Determines if user's device is handheld or desktop.
+	* Returns true if user is on a mobile device and false if user is on a desktop device.
+	*
+	* <code>
+	* 
+	* &lt;?php</br>
+	* if (GWP_Plugin::is_mobile == true) </br>
+	* {</br>
+	*	// do stuff exclusive to mobile devices</br>
+	* }</br>
+	* ?&gt;
+	* 
+	* </code>
+	* @since GWP_Plugin (0.1)
+	* @return boolean 
+	* 
+	*/
+	public static function is_mobile () {
+		/* Tell plugin if user is on a mobile device */
+		$detect = new Mobile_Detect();
+		return $detect->isMobile();
+		
+	}
+	
+	
+	
+}
+?>
