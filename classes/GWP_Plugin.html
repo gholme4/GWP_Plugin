@@ -160,6 +160,12 @@
     </li>
 
                                                                                                         <li class="method public">
+        <a href="#method_single_menu_page" title="single_menu_page :: Create a custom menu page in the WordPress admin">
+            <span class="description">Create a custom menu page in the WordPress admin</span><pre>single_menu_page</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
         <a href="#method_init" title="init :: Initializes plugin. Can be passed an optional callback.">
             <span class="description">Initializes plugin. Can be passed an optional callback.</span><pre>init</pre>
         </a>
@@ -179,11 +185,11 @@
                                 <span class="description">Validates array of scripts to get registered</span><pre>add_scripts</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                </ul>
+                                                                                                                                                                                                                                    </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -201,7 +207,7 @@
                 <small style="display: block; text-align: right">
                                                         </small>
                 <p class="short_description">GWP_Plugin
-Class that implements common functions of a WordPress plugin in an effort reduce the amount of functions written in the global namespace.</p>
+Class that implements common functions of a WordPress plugin in an effort to reduce the amount of functions written in the global namespace.</p>
                 <div class="details">
                     <div class="long_description">
                         <p>Requires PHP 5.3.0 and above</p>
@@ -231,7 +237,7 @@ Class that implements common functions of a WordPress plugin in an effort reduce
                                                                             </th>
                                     <td>
                                                                                     
-                                                                                <p><a href="http://georgeholmesii.com">http://georgeholmesii.com</a></p>
+                                                                                <p><a href="http://gholme4.github.io/GWP_Plugin/classes/GWP_Plugin.html">http://gholme4.github.io/GWP_Plugin/classes/GWP_Plugin.html</a></p>
                                     </td>
                                 </tr>
                                                                                                                 <tr>
@@ -471,7 +477,6 @@ $my_plugin->init();
 <code style="width: 99%;">
 &lt;?php
 $my_plugin = new GWP_Plugin();
-$my_plugin->add_admin_styles(array (
 
 $my_plugin->add_admin_styles(array (
     array (
@@ -578,7 +583,6 @@ $my_plugin->init();
 <code style="width: 99%;">
 &lt;?php
 $my_plugin = new GWP_Plugin();
-$my_plugin->add_front_end_scripts(array (
 
 $my_plugin->add_front_end_scripts(array (
     array (
@@ -728,11 +732,76 @@ $my_plugin->init();
                                                                                                                                                                         <p>GWP_Plugin (0.1)</p>
                                                                                                     </td>
                                             </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
                                                 <h4>$sizes</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_single_menu_page"></a>
+                        <div class="element clickable method public  method_single_menu_page" data-toggle="collapse" data-target=".method_single_menu_page .collapse">
+                            <h2>Create a custom menu page in the WordPress admin</h2>
+                            <pre>single_menu_page(array $single_page) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><h4> Usage </h4>
+<code style="width: 99%;">
+&lt;?php
+$my_plugin = new GWP_Plugin();
+
+$my_plugin->single_menu_page(
+array (
+     "page_title" => "My Plugin Page",
+    "menu_title" => "My Plugin Page",
+    "menu_slug" => "my_plugin_page",
+    "icon" => plugins_url('/images/menu-icon', __FILE__),
+    "position" => 100,
+    "page_content" => function () {
+        echo "&lt;h1&gt;My Plugin Page&lt;/h1&gt;";
+    }
+)
+);
+
+$my_plugin->init();
+?&gt;
+</code></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>GWP_Plugin (0.1)</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$single_page</h4>
                                                 <code>array</code><p></p>
                                             </div>
                                                                             
@@ -879,55 +948,6 @@ $my_plugin->init(function () {
                                                                             </div>
                                 </div>
                             </div>
-                                                    <a id="property_front_end_styles"> </a>
-                            <div class="element clickable property  protected property_front_end_styles" data-toggle="collapse" data-target=".property_front_end_styles .collapse">
-                                <h2>Array of front end stylesheets</h2>
-                                <pre>front_end_styles : array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        since
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>GWP_Plugin (0.1)</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        access
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>protected</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>array</code>
-                                                                            </div>
-                                </div>
-                            </div>
                                                     <a id="property_front_end_styles_priority"> </a>
                             <div class="element clickable property  public property_front_end_styles_priority" data-toggle="collapse" data-target=".property_front_end_styles_priority .collapse">
                                 <h2>Front end stylesheets action priority</h2>
@@ -966,55 +986,6 @@ $my_plugin->init(function () {
 
                                                                                     <h3>Type(s)</h3>
                                             <code>int</code>
-                                                                            </div>
-                                </div>
-                            </div>
-                                                    <a id="property_admin_styles"> </a>
-                            <div class="element clickable property  protected property_admin_styles" data-toggle="collapse" data-target=".property_admin_styles .collapse">
-                                <h2>Array of admin stylesheets</h2>
-                                <pre>admin_styles : array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        since
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>GWP_Plugin (0.1)</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        access
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>protected</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>array</code>
                                                                             </div>
                                 </div>
                             </div>
@@ -1059,55 +1030,6 @@ $my_plugin->init(function () {
                                                                             </div>
                                 </div>
                             </div>
-                                                    <a id="property_front_end_scripts"> </a>
-                            <div class="element clickable property  protected property_front_end_scripts" data-toggle="collapse" data-target=".property_front_end_scripts .collapse">
-                                <h2>Array of front end scripts</h2>
-                                <pre>front_end_scripts : array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        since
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>GWP_Plugin (0.1)</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        access
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>protected</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>array</code>
-                                                                            </div>
-                                </div>
-                            </div>
                                                     <a id="property_front_end_scripts_priority"> </a>
                             <div class="element clickable property  public property_front_end_scripts_priority" data-toggle="collapse" data-target=".property_front_end_scripts_priority .collapse">
                                 <h2>Front end scripts action priority</h2>
@@ -1149,55 +1071,6 @@ $my_plugin->init(function () {
                                                                             </div>
                                 </div>
                             </div>
-                                                    <a id="property_admin_scripts"> </a>
-                            <div class="element clickable property  protected property_admin_scripts" data-toggle="collapse" data-target=".property_admin_scripts .collapse">
-                                <h2>Array of admin scripts</h2>
-                                <pre>admin_scripts : array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        since
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>GWP_Plugin (0.1)</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        access
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>protected</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>array</code>
-                                                                            </div>
-                                </div>
-                            </div>
                                                     <a id="property_admin_scripts_priority"> </a>
                             <div class="element clickable property  public property_admin_scripts_priority" data-toggle="collapse" data-target=".property_admin_scripts_priority .collapse">
                                 <h2>Admin scripts action priority</h2>
@@ -1236,55 +1109,6 @@ $my_plugin->init(function () {
 
                                                                                     <h3>Type(s)</h3>
                                             <code>int</code>
-                                                                            </div>
-                                </div>
-                            </div>
-                                                    <a id="property_image_sizes"> </a>
-                            <div class="element clickable property  protected property_image_sizes" data-toggle="collapse" data-target=".property_image_sizes .collapse">
-                                <h2>Array of image sizes</h2>
-                                <pre>image_sizes : array</pre>
-                                <div class="labels">
-                                                                                                        </div>
-                                <div class="row collapse">
-                                    <div class="detail-description">
-                                        <div class="long_description"></div>
-
-                                        <table class="table">
-                                                                                            <tr>
-                                                    <th>
-                                                        since
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>GWP_Plugin (0.1)</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        access
-                                                    </th>
-                                                    <td>
-                                                                                                                    <p>protected</p>
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        var
-                                                    </th>
-                                                    <td>
-                                                                                                                    
-                                                                                                            </td>
-                                                </tr>
-                                                                                            <tr>
-                                                    <th>
-                                                        
-                                                    </th>
-                                                    <td>
-                                                                                                            </td>
-                                                </tr>
-                                                                                    </table>
-
-                                                                                    <h3>Type(s)</h3>
-                                            <code>array</code>
                                                                             </div>
                                 </div>
                             </div>
@@ -1512,7 +1336,7 @@ $my_plugin->init();
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Sat, 01 Feb 2014 08:18:42 +0100.<br/>
+            generated on Sun, 02 Feb 2014 09:20:10 +0100.<br/>
     </footer>
     </body>
 </html>
