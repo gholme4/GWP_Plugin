@@ -166,6 +166,12 @@
     </li>
 
                                                                                                         <li class="method public">
+        <a href="#method_group_menu_pages" title="group_menu_pages :: Create a custom group of menu pages in the WordPress admin">
+            <span class="description">Create a custom group of menu pages in the WordPress admin</span><pre>group_menu_pages</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
         <a href="#method_init" title="init :: Initializes plugin. Can be passed an optional callback.">
             <span class="description">Initializes plugin. Can be passed an optional callback.</span><pre>init</pre>
         </a>
@@ -185,11 +191,11 @@
                                 <span class="description">Validates array of scripts to get registered</span><pre>add_scripts</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -768,7 +774,7 @@ array (
      "page_title" => "My Plugin Page",
     "menu_title" => "My Plugin Page",
     "menu_slug" => "my_plugin_page",
-    "icon" => plugins_url('/images/menu-icon', __FILE__),
+    "icon" => plugins_url('/images/menu-icon.png', __FILE__),
     "position" => 100,
     "page_content" => function () {
         echo "&lt;h1&gt;My Plugin Page&lt;/h1&gt;";
@@ -803,6 +809,57 @@ $my_plugin->init();
                                                                                     <div class="subelement argument">
                                                 <h4>$single_page</h4>
                                                 <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+                        </div>
+                                            <a id="method_group_menu_pages"></a>
+                        <div class="element clickable method public  method_group_menu_pages" data-toggle="collapse" data-target=".method_group_menu_pages .collapse">
+                            <h2>Create a custom group of menu pages in the WordPress admin</h2>
+                            <pre>group_menu_pages($group_pages) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><h4> Usage </h4>
+<code style="width: 99%;">
+&lt;?php
+$my_plugin = new GWP_Plugin();
+
+$my_plugin->group_menu_pages(
+array (
+    "menu_title" => "My Plugin Page",
+)
+);
+
+$my_plugin->init();
+?&gt;
+</code></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    since
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>GWP_Plugin (0.1)</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$group_pages</h4>
+                                                <code></code><p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -1336,7 +1393,7 @@ $my_plugin->init();
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Sun, 02 Feb 2014 09:20:10 +0100.<br/>
+            generated on Sun, 02 Feb 2014 09:44:37 +0100.<br/>
     </footer>
     </body>
 </html>
