@@ -125,6 +125,19 @@ Usage
     	// do stuff within admin header
     };
     
+    $my_plugin->single_menu_page(
+      array (
+	   "page_title" => "My Plugin Page",
+	   "menu_title" => "My Plugin Page",
+	   "menu_slug" => "my_plugin_page",
+	   "icon" => plugins_url('/images/menu-icon.png', __FILE__),
+	   "position" => 100,
+	   "page_content" => function () {
+		echo "<h1>My Plugin Page</h1>";
+	   }
+	)	
+    );
+    
     /* Initialize plugin */
     $my_plugin->init(function () {
     	error_log("My Plugin initialized.", 0);	

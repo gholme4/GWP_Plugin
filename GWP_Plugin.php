@@ -36,6 +36,7 @@ class GWP_Plugin {
 	* 
 	* @since GWP_Plugin (0.1)
 	* @access protected
+	* @ignore
 	* @var array $front_end_styles
 	*/
 	protected $front_end_styles = array();
@@ -53,6 +54,7 @@ class GWP_Plugin {
 	* 
 	* @since GWP_Plugin (0.1)
 	* @access protected
+	* @ignore
 	* @var array $admin_styles
 	*/
 	protected $admin_styles = array();
@@ -70,6 +72,7 @@ class GWP_Plugin {
 	* 
 	* @since GWP_Plugin (0.1)
 	* @access protected
+	* @ignore
 	* @var array $front_end_scripts
 	*/
 	protected $front_end_scripts = array();
@@ -87,6 +90,7 @@ class GWP_Plugin {
 	* 
 	* @since GWP_Plugin (0.1)
 	* @access protected
+	* @ignore
 	* @var array $admin_scripts
 	*/
 	protected $admin_scripts = array();
@@ -104,9 +108,30 @@ class GWP_Plugin {
 	* 
 	* @since GWP_Plugin (0.1)
 	* @access protected
+	* @ignore
 	* @var array $image_sizes
 	*/
 	protected $image_sizes = array();
+	
+	/**
+	* Array of admin menu pages
+	* 
+	* @since GWP_Plugin (0.1)
+	* @access protected
+	* @ignore
+	* @var array $single_menu_pages
+	*/
+	protected $single_menu_pages = array();
+	
+	/**
+	* Array of admin menu page groups
+	* 
+	* @since GWP_Plugin (0.1)
+	* @access protected
+	* @ignore
+	* @var array $group_menu_pages
+	*/
+	protected $group_menu_pages = array();
 	
 	/**
 	* User defined function containing code to be ran when the plugin is activated.
@@ -341,7 +366,6 @@ class GWP_Plugin {
 	* <code style="width: 99%;">
 	* &lt;?php
 	* $my_plugin = new GWP_Plugin();
-	* $my_plugin->add_admin_styles(array (
 	*
 	* $my_plugin->add_admin_styles(array (
 	* 	array (
@@ -445,7 +469,6 @@ class GWP_Plugin {
 	* <code style="width: 99%;">
 	* &lt;?php
 	* $my_plugin = new GWP_Plugin();
-	* $my_plugin->add_front_end_scripts(array (
 	*
 	* $my_plugin->add_front_end_scripts(array (
 	* 	array (
@@ -597,6 +620,65 @@ class GWP_Plugin {
 	}
 	
 	/**
+	* Create a custom menu page in the WordPress admin
+	*
+	* <h4> Usage </h4>
+	* <code style="width: 99%;">
+	* &lt;?php
+	* $my_plugin = new GWP_Plugin();
+	*
+	* $my_plugin->single_menu_page(
+	*	array (
+	*	 	"page_title" => "My Plugin Page",
+	*		"menu_title" => "My Plugin Page",
+	*		"menu_slug" => "my_plugin_page",
+	*		"icon" => plugins_url('/images/menu-icon.png', __FILE__),
+	*		"position" => 100,
+	*		"page_content" => function () {
+	*			echo "&lt;h1&gt;My Plugin Page&lt;/h1&gt;";
+	*		}
+	*	)	
+	* );
+	*
+	* $my_plugin->init();
+	* ?&gt;
+	* </code>
+	* @since GWP_Plugin (0.1)
+	* @param array $single_page
+	*/
+	public function single_menu_page ($single_page) {
+		if (!$single_page['page_title'] || !$single_page['menu_title'] || !$single_page['page_content'] || !$single_page['menu_slug'])
+		{
+			$this->log('Error: "page_title", "menu_title", "menu_slug", and "page_content" are required when adding a menu page.');	
+			return;
+		}
+		
+		if (!$single_page['icon'])
+			$single_page['icon'] = "";
+		if (!$single_page['position'])
+			$single_page['position'] = 100;
+		$single_page['menu_slug'] = "GWP_Plugin_" .$single_page['menu_slug'];
+		array_push($this->single_menu_pages, $single_page);
+	}
+	
+	/**
+	* Add single menu pages
+	*
+	* @ignore
+	* @since GWP_Plugin (0.1)
+	*/
+	public function add_single_menu_pages () {
+		
+		foreach ($this->single_menu_pages as $single_page)
+		{
+			$this->log($single_page['menu_slug']);
+			$page_function = $single_page['page_content'];
+			$page_function;
+			add_menu_page( $single_page['page_title'], $single_page['menu_title'], 'manage_options', $single_page['menu_slug'], $single_page['page_content'], $single_page['icon'], $single_page['position']);
+			
+		}
+	}
+	/**
 	* Writes messages to log
 	* 
 	* @ignore
@@ -687,8 +769,11 @@ class GWP_Plugin {
 		/* Add custom image sizes */
 		add_action('plugins_loaded', array( $this, 'add_image_sizes' ));
 		
+		/* Add menu single pages */
+		add_action('admin_menu', array( $this, 'add_single_menu_pages' ));
 		if ($callback)
 			$callback();
+			
 	}
 	
 	
