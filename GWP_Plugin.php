@@ -671,13 +671,50 @@ class GWP_Plugin {
 		
 		foreach ($this->single_menu_pages as $single_page)
 		{
-			$this->log($single_page['menu_slug']);
-			$page_function = $single_page['page_content'];
-			$page_function;
 			add_menu_page( $single_page['page_title'], $single_page['menu_title'], 'manage_options', $single_page['menu_slug'], $single_page['page_content'], $single_page['icon'], $single_page['position']);
 			
 		}
 	}
+	
+	/**
+	* Create a custom group of menu pages in the WordPress admin
+	*
+	* <h4> Usage </h4>
+	* <code style="width: 99%;">
+	* &lt;?php
+	* $my_plugin = new GWP_Plugin();
+	*
+	* $my_plugin->group_menu_pages(
+	*	array (
+	*		"menu_title" => "My Plugin Page",
+	*	)	
+	* );
+	*
+	* $my_plugin->init();
+	* ?&gt;
+	* </code>
+	* @since GWP_Plugin (0.1)
+	* @param array $single_page
+	*/
+	public function group_menu_pages ($group_pages) {
+		
+	}
+	
+	/**
+	* Add single menu pages
+	*
+	* @ignore
+	* @since GWP_Plugin (0.1)
+	*/
+	public function add_group_menu_pages () {
+		
+		foreach ($this->group_menu_pages as $group_pages)
+		{
+			
+		}
+	}
+			
+		
 	/**
 	* Writes messages to log
 	* 
@@ -769,7 +806,7 @@ class GWP_Plugin {
 		/* Add custom image sizes */
 		add_action('plugins_loaded', array( $this, 'add_image_sizes' ));
 		
-		/* Add menu single pages */
+		/* Add single menu pages */
 		add_action('admin_menu', array( $this, 'add_single_menu_pages' ));
 		if ($callback)
 			$callback();

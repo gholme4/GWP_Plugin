@@ -125,6 +125,7 @@ Usage
     	// do stuff within admin header
     };
     
+    /* Add menu page */
     $my_plugin->single_menu_page(
       array (
 	   "page_title" => "My Plugin Page",
@@ -135,6 +136,24 @@ Usage
 	   "page_content" => function () {
 		echo "<h1>My Plugin Page</h1>";
 	   }
+	)	
+    );
+    
+    /* OR */
+    
+    function my_plugin_page () {
+    	echo "<h1>My Plugin Page</h1>";
+    }
+    
+    /* Add menu page */
+    $my_plugin->single_menu_page(
+      array (
+	   "page_title" => "My Plugin Page",
+	   "menu_title" => "My Plugin Page",
+	   "menu_slug" => "my_plugin_page",
+	   "icon" => plugins_url('/images/menu-icon.png', __FILE__),
+	   "position" => 100,
+	   "page_content" => 'my_plugin_page'
 	)	
     );
     
