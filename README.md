@@ -1,7 +1,7 @@
 GWP_Plugin
 ==========
 
-GWP_Plugin is a class that implements common functions of a WordPress plugin such as wp_enqueue_script() and add_image_size(). Its purpose is to reduce the need of writing global functions and provide a few extra useful functions.
+GWP_Plugin is a class that implements common functions of a WordPress plugin such as wp_enqueue_script() and add_image_size(). Its purpose is to reduce the need of writing global functions, reduce redundant code, and provide a few extra useful functions.
 
 *GWP_Plugin requires PHP 5.3.0 and above*
 

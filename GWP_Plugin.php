@@ -2,7 +2,7 @@
 require_once(dirname(__FILE__) . "/lib/mobile-detect/Mobile_Detect.php");
 /**
 * GWP_Plugin
-* Class that implements common functions of a WordPress plugin in an effort to reduce the amount of functions written in the global namespace.
+* Class that implements common functions of a WordPress plugin in an effort to reduce the amount of functions written in the global namespace and redundant code.
 * Requires PHP 5.3.0 and above
 *
 * @version 0.1
