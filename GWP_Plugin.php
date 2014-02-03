@@ -733,7 +733,6 @@ class GWP_Plugin {
 				$this->log('Error: "menu_title", "page_title", "menu_slug", and "page_content" are required when add pages to group menu.');	
 				return;
 			}
-			
 		}
 		
 		/* Set defaults if they weren't provided */
