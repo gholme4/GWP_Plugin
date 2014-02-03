@@ -116,7 +116,7 @@ class GWP_Plugin {
 	/**
 	* Array of admin menu pages
 	* 
-	* @since GWP_Plugin (0.1)
+	* @since GWP_Plugin (0.1.1)
 	* @access protected
 	* @ignore
 	* @var array $single_menu_pages
@@ -126,7 +126,7 @@ class GWP_Plugin {
 	/**
 	* Array of admin menu page groups
 	* 
-	* @since GWP_Plugin (0.1)
+	* @since GWP_Plugin (0.1.2)
 	* @access protected
 	* @ignore
 	* @var array $group_menu_pages
@@ -643,7 +643,7 @@ class GWP_Plugin {
 	* $my_plugin->init();
 	* ?&gt;
 	* </code>
-	* @since GWP_Plugin (0.1)
+	* @since GWP_Plugin (0.1.1)
 	* @param array $single_page
 	*/
 	public function single_menu_page ($single_page) {
@@ -665,7 +665,7 @@ class GWP_Plugin {
 	* Add single menu pages
 	*
 	* @ignore
-	* @since GWP_Plugin (0.1)
+	* @since GWP_Plugin (0.1.1)
 	*/
 	public function add_single_menu_pages () {
 		
@@ -686,31 +686,86 @@ class GWP_Plugin {
 	*
 	* $my_plugin->group_menu_pages(
 	*	array (
-	*		"menu_title" => "My Plugin Page",
-	*	)	
+	*		"menu_name" => "My Plugin Options",
+	*		"menu_slug" => "my_plugin_options",
+	*		"icon" => plugins_url('/images/menu-icon.png', __FILE__),
+	*		"position" => 100,
+	*		"pages" => array (
+	*			array (
+	*				"page_title" => "First Page",
+	*				"menu_title" => "First Page",
+	*				"menu_slug" => "first_page",
+	*				"page_content" => function () {
+	*					echo "&lt;h1&gt;First Page&lt;/h1&gt;";
+	*				}
+	*			),
+	*			array (
+	*				"page_title" => "Second Page",
+	*				"menu_title" => "Second Page",
+	*				"menu_slug" => "second_page",
+	*				"page_content" => function () {
+	*					echo "&lt;h1&gt;Second Page&lt;/h1&gt;";
+	*				}
+	*			)
+	*	     
+	*		)	
 	* );
 	*
 	* $my_plugin->init();
 	* ?&gt;
 	* </code>
-	* @since GWP_Plugin (0.1)
-	* @param array $single_page
+	* @since GWP_Plugin (0.1.2)
+	* @param array $group_pages
 	*/
 	public function group_menu_pages ($group_pages) {
+		/* Validate data of top level menu page */
+		if (!$group_pages['menu_name'] || !$group_pages['menu_slug'] || !$group_pages['pages'])
+		{
+			$this->log('Error: "menu_name", "menu_slug", and "pages" are required when adding group menu pages.');	
+			return;
+		}
 		
+		/* Validate data of submenu pages */
+		foreach ($group_pages['pages'] as $group_page)
+		{
+			if (!$group_page['menu_title'] || !$group_page['page_title'] || !$group_page['menu_slug'] || !$group_page['page_content'])
+			{
+				$this->log('Error: "menu_title", "page_title", "menu_slug", and "page_content" are required when add pages to group menu.');	
+				return;
+			}
+			
+		}
+		
+		/* Set defaults if they weren't provided */
+		if (!$group_pages['icon'])
+			$group_pages['icon'] = "";
+		if (!$group_pages['position'])
+			$group_pages['position'] = 100;
+			
+		array_push($this->group_menu_pages, $group_pages);
 	}
 	
 	/**
 	* Add single menu pages
 	*
 	* @ignore
-	* @since GWP_Plugin (0.1)
+	* @since GWP_Plugin (0.1.2)
 	*/
 	public function add_group_menu_pages () {
 		
 		foreach ($this->group_menu_pages as $group_pages)
 		{
 			
+			
+			add_menu_page($group_pages['pages'][0]['page_title'], $group_pages['menu_name'], 'manage_options', $group_pages['menu_slug'],$group_pages['pages'][0]['page_content'], $group_pages['icon'], $group_pages['position']);
+			add_submenu_page($group_pages['menu_slug'], $group_pages['pages'][0]['page_title'],$group_pages['pages'][0]['menu_title'],'manage_options', $group_pages['menu_slug'],$group_pages['pages'][0]['page_content']);
+			$i = 0;
+			foreach ($group_pages['pages'] as $group_page)
+			{
+				if ($i > 0)
+					add_submenu_page($group_pages['menu_slug'], $group_page['page_title'],$group_page['menu_title'],'manage_options', $group_page['menu_slug'],$group_page['page_content']);	
+				$i++;
+			}
 		}
 	}
 			
@@ -808,6 +863,10 @@ class GWP_Plugin {
 		
 		/* Add single menu pages */
 		add_action('admin_menu', array( $this, 'add_single_menu_pages' ));
+		
+		/* Add group menu pages */
+		add_action('admin_menu', array( $this, 'add_group_menu_pages' ));
+		
 		if ($callback)
 			$callback();
 			

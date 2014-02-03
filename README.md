@@ -154,8 +154,36 @@ Usage
 	   "icon" => plugins_url('/images/menu-icon.png', __FILE__),
 	   "position" => 100,
 	   "page_content" => 'my_plugin_page'
-	)	
+	 )	
     );
+	 
+	  /* Add menu page along with submenu pages */
+	 $my_plugin->group_menu_pages(
+	 array (
+		"menu_name" => "My Plugin Options",
+		"menu_slug" => "my_plugin_options",
+		"icon" => plugins_url('/images/menu-icon.png', __FILE__),
+		"position" => 100,
+		"pages" => array (
+			array (
+				"page_title" => "First Page",
+				"menu_title" => "First Page",
+				"menu_slug" => "first_page",
+				"page_content" => function () {
+					echo "<h1>First Page</h1>";
+				}
+			),
+			array (
+				"page_title" => "Second Page",
+				"menu_title" => "Second Page",
+				"menu_slug" => "second_page",
+				"page_content" => function () {
+					echo "<h1>Second Page</h1>";
+				}
+			)
+		  
+		)	
+	 );
     
     /* Initialize plugin */
     $my_plugin->init(function () {
